@@ -1,0 +1,8 @@
+# AI_RUN.txt for the Test repository.
+# This is declarative data. Controller does not execute this file.
+
+[W10]
+TEXT=Test automated W10 run
+
+[WXP]
+TEXT=Test automated WXP run

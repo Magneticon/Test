@@ -10,8 +10,23 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            File.WriteAllText("hello.txt", "Hello World");
+            string m = "Test Program";
+            Console.WriteLine(m);
+            Console.WriteLine("");
+            string F = m+Environment.NewLine;
+            if (args.Length > 0){
+                for (int i = 0; i < args.Length; i++){
+                    m = "Parameter No."+(i+1)+" is: "+args[i];
+                    F += Environment.NewLine+m;
+                    Console.WriteLine(m);
+                }
+            }
+            else{
+                m = "No parameters were provided.";
+                F += Environment.NewLine+m;;
+                Console.WriteLine(m);
+            }
+            File.WriteAllText("output.txt", F);
         }
     }
 }

@@ -1,0 +1,5 @@
+Y:\GPT\CODEX\CODEX\GIT\Test\bin\x64\Debug\Test.exe
+Y:\GPT\CODEX\CODEX\GIT\Test\bin\x64\Debug\Test.pdb
+Y:\GPT\CODEX\CODEX\GIT\Test\obj\x64\Debug\ResolveAssemblyReference.cache
+Y:\GPT\CODEX\CODEX\GIT\Test\obj\x64\Debug\Test.exe
+Y:\GPT\CODEX\CODEX\GIT\Test\obj\x64\Debug\Test.pdb
