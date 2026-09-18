@@ -1,0 +1,5 @@
+C:\Documents and Settings\Pavel.DE-M6700\Desktop\PROJ98\ConsoleApplication1\bin\x64\Release\Test.exe
+C:\Documents and Settings\Pavel.DE-M6700\Desktop\PROJ98\ConsoleApplication1\bin\x64\Release\Test.pdb
+C:\Documents and Settings\Pavel.DE-M6700\Desktop\PROJ98\ConsoleApplication1\obj\x64\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\Pavel.DE-M6700\Desktop\PROJ98\ConsoleApplication1\obj\x64\Release\Test.exe
+C:\Documents and Settings\Pavel.DE-M6700\Desktop\PROJ98\ConsoleApplication1\obj\x64\Release\Test.pdb
