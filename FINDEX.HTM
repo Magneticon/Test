@@ -1,0 +1,200 @@
+﻿<!DOCTYPE HTML>
+<HTML>
+    <HEAD>
+        <META CHARSET="UTF-8" AUTHOR="MAGNETICON">
+        <TITLE>FINDEX 1.00</TITLE>
+        <STYLE TYPE="TEXT/CSS">
+            BODY{
+                COLOR: #00CC00;
+                BACKGROUND-COLOR: #000000;
+                FONT-SIZE: 20PX;
+                FONT-FAMILY: 'Pcomm Session', monospace;
+            }
+            #CMD{
+                WIDTH: 90VW;
+                HEIGHT: 12.5VH;
+            }
+            .INPOUT{
+                WIDTH: 45VW;
+                HEIGHT: 20VH;
+                COLOR: #00CCFF;
+                BACKGROUND-COLOR: #000000;
+                BORDER: 3PX SOLID #00CC00;
+                FONT-SIZE: 20PX;
+                BORDER-RADIUS: 10PX;
+                OVERFLOW: AUTO;
+            }
+            .OUT{
+                WIDTH: 95VW;
+                HEIGHT: 30VH;
+                OVERFLOW: AUTO;
+                BORDER: 3PX SOLID #00CC00;
+                COLOR: #FFCC00;
+                BACKGROUND-COLOR: #000000;
+                FONT-SIZE: 20PX;
+                BORDER-RADIUS: 10PX;
+            }
+            .TEXT{
+                BORDER: 3PX SOLID #00CC00;
+                COLOR: #FFCC00;
+                BACKGROUND-COLOR: #000000;
+                FONT-SIZE: 20PX;
+                BORDER-RADIUS: 10PX;
+                WIDTH: 70VW;
+            }
+            .OUTPUTS{
+                WIDTH: 95VW;
+                HEIGHT: 38VH;
+                OVERFLOW-Y: AUTO;
+                OVERFLOW-X: HIDDEN;
+                COLOR: #FFCC00;
+                BACKGROUND-COLOR: #000000;
+            }
+            #MBOX{
+                BACKGROUND-COLOR: #0000AA;
+                COLOR: #FF0000;
+                WIDTH: 30VH;
+                HEIGHT: 8VH;
+                RIGHT: 2VH;
+                TOP: 2VH;
+                DISPLAY: FLEX;
+                JUSTIFY-CONTENT: CENTER;
+                ALIGN-ITEMS: CENTER;
+                FONT-SIZE: 4.5VH;
+                FONT-FAMILY: ARIAL;
+                FONT-WEIGHT: BOLD;
+                POSITION: ABSOLUTE;
+                BORDER-RADIUS: 10PX;
+            }
+            #MBOX:HOVER{
+                BACKGROUND-COLOR: #FF0000;
+                COLOR: #0000AA;
+                CURSOR: POINTER;
+            }
+            .BUTTON{
+                COLOR: #00CC00;
+                BACKGROUND-COLOR: #000000;
+                BORDER: 3PX OUTSET #00CC00;
+                DISPLAY: INLINE-FLEX;
+                JUSTIFY-CONTENT: CENTER;
+                FONT-WEIGHT: BOLD;
+                ALIGN-ITEMS: CENTER;
+                /* WIDTH: 200PX; */
+                HEIGHT: 40PX;
+                CURSOR: POINTER;
+                BORDER-RADIUS: 25PX;
+                WIDTH: FIT-CONTENT;
+                WHITE-SPACE: NOWRAP;
+            }
+            .BUTTONTABLE{
+                BORDER-RADIUS: 0PX;
+                WIDTH: FIT-CONTENT;
+                WHITE-SPACE: NOWRAP;
+            }
+            .BUTTON:HOVER{
+                COLOR: #000000;
+                BACKGROUND-COLOR: #00CC00;
+            }
+            #RECORDS{
+                COLOR: #FF00CC;
+            }
+            .RECORD{
+                COLOR: #FF00CC;
+            }
+        </STYLE>
+        <SCRIPT TYPE="TEXT/JAVASCRIPT">
+            function RUN(TI){
+                var T = parseInt(TI[0], 10);
+                var T2 = parseInt(TI[1], 10);
+                GtE("OUT").value = "";
+                var d1 = GtE("INP1").value;
+                var d2 = GtE("INP2").value;
+                if (T2 == 1){
+                    d1 = d1.replaceAll("(", " ").replaceAll(")", " ").replaceAll(".", " ").replaceAll(":", " ").replaceAll("-", " ").replaceAll("+", " ").replaceAll("<", " ").replaceAll(">", " ");
+                    d2 = d2.replaceAll("(", " ").replaceAll(")", " ").replaceAll(".", " ").replaceAll(":", " ").replaceAll("-", " ").replaceAll("+", " ").replaceAll("<", " ").replaceAll(">", " ");
+                }
+                var H1 = d1.split(/\n/);
+                var H2 = d2.split(/\n/);
+                var R = "";
+                var Q = 0;
+                var F = 0;
+                for (var i = 0; i < H1.length; i++){
+                    F = 0;
+                    var U = H1[i].trim();
+                    if (U == "") continue;
+                    var IW = U.split(" ");
+                    if (T == 0) U = U.toUpperCase();
+                    for (var j = 0; j < H2.length; j++){
+                        var U2 = H2[j].trim();
+                        if (U2 == "") continue;
+                        if (T == 0) U2 = U2.toUpperCase();
+                        if (T2 == 1){
+                            var W = U2.split(" ");
+                            var B = [];
+                            var Offset = Math.min(W.length, IW.length);
+                            for (var q = 0; q < Offset; q++){
+                                B.push(W[q]);
+                            }
+                            if (Offset < 1) continue;
+                            for (var g = Offset-1; g < W.length; g++){
+                                if (g > Offset-1){
+                                    B.shift();
+                                    B.push(W[g]);
+                                }
+                                var BS = "";
+                                for (var k = 0; k < B.length; k++){
+                                    if (k > 0) BS += " ";
+                                    BS += ""+B[k];
+                                }
+                                var U3 = BS.trim();
+                                if (U3 == "") continue;
+                                if (U3 == U){
+                                    F = 1;
+                                    break;
+                                }
+                            }
+                        }
+                        else if (U2.indexOf(U) > -1){
+                            F = 1;
+                            break;
+                        }
+                        if (F == 1) break;
+                    }
+                    if (F != 0){
+                        if (R != "") R += "\n";
+                        R += H1[i].trim();
+                        Q++;
+                    }
+                }
+                GtE("OUT").value = R;
+                GtE("RECORDS").innerHTML = Q;
+            }
+            
+            function GtE(id){
+                return document.getElementById(id);
+            }
+        </SCRIPT>
+    </HEAD>
+    <BODY>
+        <H1>FINDEX 1.00</H1>
+        <I>Save manual work and have your existing records found in thousands lines long text in no time!</I>
+        <BR><BR>
+        <TABLE>
+            <TR>
+                <TD>INPUT 1 (What to find, one record per line):<BR><TEXTAREA ID="INP1" CLASS="INPOUT"></TEXTAREA></TD>
+                <TD STYLE="WIDTH: 5VH;"></TD>
+                <TD>INPUT 2 (Where to search, i.e. job output):<BR><TEXTAREA ID="INP2" CLASS="INPOUT"></TEXTAREA></TD>
+            </TR>
+        </TABLE>
+        <BR>
+        <SPAN CLASS="BUTTON" ONCLICK="JAVASCRIPT: RUN('00');">&nbsp;&nbsp;SEARCH CASE INSENS.&nbsp;&nbsp;</SPAN>
+        <SPAN CLASS="BUTTON" ONCLICK="JAVASCRIPT: RUN('10');">&nbsp;&nbsp;SEARCH CASE SENS.&nbsp;&nbsp;</SPAN>
+        <SPAN CLASS="BUTTON" ONCLICK="JAVASCRIPT: RUN('01');">&nbsp;&nbsp;SEARCH WORD CASE INSENS.&nbsp;&nbsp;</SPAN>
+        <SPAN CLASS="BUTTON" ONCLICK="JAVASCRIPT: RUN('11');">&nbsp;&nbsp;SEARCH WORD CASE SENS.&nbsp;&nbsp;</SPAN>
+        <BR><BR>
+        <SPAN STYLE="POSITION: ABSOLUTE; RIGHT: 10VH;"><B>TOTAL AMOUNT OF RECORDS:&nbsp;</B><SPAN ID="RECORDS">0</SPAN></SPAN>
+        <BR>
+        OUTPUT (All records from input 1, which were found in input 2):<BR><TEXTAREA ID="OUT" CLASS="OUT"></TEXTAREA>
+        <DIV ID="MBOX" ONCLICK="JAVASCRIPT: window.open('https://github.com/Magneticon', '_blank');">Magneticon</DIV>
+    </BODY>
+</HTML>
